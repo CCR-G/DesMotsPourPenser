@@ -43,9 +43,9 @@ for (var i = 0; i < myWordsArray.length; i++) {
     app.findTextPreferences.appliedParagraphStyle = "No-Print";
     var myFoundText = myDoc.findText();
     if (myFoundText.length !== 0) {
-      buttons(); //- A word image already exists, we give a choice to the user
+      choiceButtons(); //- A word image already exists, we give a choice to the user
     } else {
-      creerMot(); //- No word image by that name exists, we create one
+      createWord(); //- No word image by that name exists, we create one
     }
   }
   //- The file is empty
@@ -55,7 +55,7 @@ for (var i = 0; i < myWordsArray.length; i++) {
 }
 
 //FUNCTION FOR DISPLAYING CHOICES BUTTONS
-function buttons() {
+function choiceButtons() {
   var w = new Window("dialog", 'The word "' + myWord + '" already exists…'),
     u,
     modifierBtn = w.add(
@@ -79,12 +79,12 @@ function buttons() {
   if (result == 1) {
     myFoundText[0].parentTextFrames[0].parentPage.remove(); //- Deleting the page on which the word has been found
     myDoc.colors.itemByName(myWord).remove(); //- Deleting the previous word color
-    creerMot();
+    createWord();
   }
 }
 
 //FUNCTION FOR CREATING A NEW WORD IMAGE
-function creerMot() {
+function createWord() {
   //ADDING A PAGE AT THE BEGINNING OF THE DOCUMENT
   myDoc.pages.add(LocationOptions.BEFORE, myDoc.pages[0]);
 
