@@ -58,19 +58,19 @@ for (var i = 0; i < myWordsArray.length; i++) {
 function choiceButtons() {
   var w = new Window("dialog", 'The word "' + myWord + '" already exists…'),
     u,
-    modifierBtn = w.add(
+    editBtn = w.add(
       "button",
       u,
       "Delete the existing image and create a new one"
     ); //- Choosing to delete the word image and create a new one
-  (passerBtn = w.add("button", u, "Keep the existing image and move on")),
-    (passerBtn.code = 0); //- Choosing to keep the existing word and move on to the next one
-  modifierBtn.code = 1;
+  (skipBtn = w.add("button", u, "Keep the existing image and move on")),
+    (skipBtn.code = 0); //- Choosing to keep the existing word and move on to the next one
+  editBtn.code = 1;
 
   w.preferredSize.width = 400;
   w.alignChildren = ["fill", "top"];
 
-  passerBtn.onClick = modifierBtn.onClick = function () {
+  skipBtn.onClick = editBtn.onClick = function () {
     w.close(this.code);
   };
 
